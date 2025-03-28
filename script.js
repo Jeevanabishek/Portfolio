@@ -1,30 +1,3 @@
-  // Mobile menu toggle
-  $(document).ready(function() {
-    $('.menu_icon').click(function() {
-      $('.header ul').toggleClass('show');
-    });
-
-    document.querySelector('.menu_icon').addEventListener('click', function() {
-      const nav = document.querySelector('.header ul');
-      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-    });
-  
-    // Close menu when clicking a link
-    $('.header ul li a').click(function() {
-      if ($(window).width() <= 767) {
-        $('.header ul').removeClass('show');
-      }
-    });
-  });
-
-  document.querySelectorAll('.header ul li a').forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 767) {
-        document.querySelector('.header ul').style.display = 'none';
-      }
-    });
-  });
-
 $(document).ready(function() {
 
   //sticky header
@@ -34,6 +7,20 @@ $(document).ready(function() {
       } else {
         $(".header-area").removeClass("sticky");
       }
+  
+      // Mobile menu toggle
+  $(document).ready(function() {
+    $('.menu_icon').click(function() {
+      $('.header ul').toggleClass('show');
+    });
+  
+    // Close menu when clicking a link
+    $('.header ul li a').click(function() {
+      if ($(window).width() <= 767) {
+        $('.header ul').removeClass('show');
+      }
+    });
+  });
   
       // Update the active section in the header
       updateActiveSection();
