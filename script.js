@@ -10,29 +10,33 @@ $(document).ready(function() {
   });
 
   // Mobile menu toggle (corrected placement)
-  $('.menu_icon').click(function(e) {
+  $('.menu_icon').on('click', function(e) {
+    e.preventDefault();
     e.stopPropagation();
     $('.header ul').toggleClass('show');
   });
 
   // Close menu when clicking a link
-  $('.header ul li a').click(function() {
+  $('.header ul li a').on('click', function() {
     if ($(window).width() <= 767) {
       $('.header ul').removeClass('show');
     }
   });
 
   // Close menu when clicking outside
-  $(document).click(function() {
-    if ($(window).width() <= 767) {
+  $(document).on('click', function(e) {
+    if ($(window).width() <= 767 && 
+        !$(e.target).closest('.header ul').length && 
+        !$(e.target).closest('.menu_icon').length) {
       $('.header ul').removeClass('show');
     }
   });
 
   // Prevent menu close when clicking inside
-  $('.header ul').click(function(e) {
+  $('.header ul').on('click', function(e) {
     e.stopPropagation();
   });
+});
 
   // Rest of your existing code...
   $(".header ul li a").click(function(e) {
@@ -75,7 +79,6 @@ $(document).ready(function() {
       })
       .catch(error => console.error('Error!', error.message));
   });
-});
 
 function updateActiveSection() {
   var scrollPosition = $(window).scrollTop();
