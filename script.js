@@ -9,28 +9,29 @@ $(document).ready(function() {
     updateActiveSection();
   });
 
+  // Mobile menu functionality
+$(document).ready(function() {
+
   // Mobile menu toggle (corrected placement)
-  $('.menu_icon').on('click', function(e) {
+  $('.menu_icon').click(function(e) {
     e.preventDefault();
     e.stopPropagation();
-    $('.header ul').toggleClass('show');
+    $('.navbar').toggleClass('show');
   });
 
   // Close menu when clicking a link
-  $('.header ul li a').on('click', function() {
-    if ($(window).width() <= 767) {
-      $('.header ul').removeClass('show');
-    }
+  $('.navbar a').click(function() {
+    $('.navbar').removeClass('show');
   });
 
   // Close menu when clicking outside
-  $(document).on('click', function(e) {
-    if ($(window).width() <= 767 && 
-        !$(e.target).closest('.header ul').length && 
+  $(document).click(function(e) {
+    if (!$(e.target).closest('.navbar').length && 
         !$(e.target).closest('.menu_icon').length) {
-      $('.header ul').removeClass('show');
+      $('.navbar').removeClass('show');
     }
   });
+});
 
   // Prevent menu close when clicking inside
   $('.header ul').on('click', function(e) {
