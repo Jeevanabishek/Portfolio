@@ -1,4 +1,20 @@
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 *{
   margin:0;
@@ -130,7 +146,7 @@ body{
   border: 15px solid #444444;
   box-shadow: 5px 7px 25px rgba(0, 0, 0, 0.5)
 }
-profile-photo .img{
+.profile-photo .img{
   height: 100%;
   width: 100%;
   transition: 0.5s;
@@ -645,16 +661,15 @@ profile-photo .img{
   }
 
   .header .menu_icon {
-    display: block;
-    position: static;
-    order: 2;
-    font-size: 28px;
-    margin-left: auto;
+    display: block !important;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
   }
   .header ul{
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px;
     left: 0;
     right: 0;
     background-color: #202020;
@@ -662,24 +677,26 @@ profile-photo .img{
     margin: 0;
     z-index: 1000;
     border-top: 1px solid #444;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
 
   .header ul.show {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
+    animation: fadeInDown 0.3s ease-out;
   }
 
   .header ul li {
     margin: 0;
-    padding: 0 20px;
+    padding: 0;
+    text-align: center;
   }
 
   .header ul li a {
-    padding: 12px 0;
+    padding: 12px 20px;
     display: block;
     border-bottom: 1px solid #444;
     font-size: 16px;
-    color: #e5e5e5;
   }
 
   .header ul li:last-child a {
@@ -749,48 +766,37 @@ profile-photo .img{
     margin-top: 20px;
   }
 
-  .timeline-item {
-    padding-bottom: 30px;
-    margin-bottom: 20px;
-  }
-  
-  .timeline-title {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  
-  .timeline-text {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
   .project-content {
-    padding: 50px 0;
+    padding: 40px 0;
   }
   .project {
-    flex-basis: 100%;
+    padding: 25px 20px;
     margin-bottom: 30px;
-    padding: 25px;
     line-height: 1.6;
   }
   
   .project h4 {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.4;
     margin: 15px 0;
+    text-align: center;
     word-break: normal;
-    hyphens: auto;
+    hyphens: none;
   }
   
   .project li {
     font-size: 15px;
     margin-bottom: 15px;
     text-align: left;
+    list-style-type: disc;
+  }
+
+  .project ul {
+    padding-left: 20px;
   }
   
   .project .btn-group {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 25px;
@@ -800,11 +806,12 @@ profile-photo .img{
   
   .project .btn {
     flex: 1 1 120px;
-    padding: 10px 15px;
+    padding: 10px 5px;
     font-size: 14px;
     text-align: center;
     margin: 0;
     min-width: 0;
+    white-space: nowrap;
   }
 
   .project i {
@@ -812,8 +819,10 @@ profile-photo .img{
     height: 50px;
     font-size: 22px;
     line-height: 50px;
+    margin: 0 auto 20px;
+    display: block;
   }
-  
+
   .skills {
     grid-template-columns: 1fr;
   }
