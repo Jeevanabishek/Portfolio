@@ -648,7 +648,7 @@ profile-photo .img{
     z-index: 100;
   }
   .header ul{
-    display: none;
+    display: flex;
     width: 100%;
     flex-direction: column;
     background-color: #202020;
@@ -656,7 +656,8 @@ profile-photo .img{
     top: 60px;
     left: 0;
     z-index: 99;
-    padding: 20px 0;
+    padding: 20px;
+    gap: 12px;
   }
 
   .header ul.show {
@@ -664,8 +665,7 @@ profile-photo .img{
   }
 
   .header ul li {
-    margin: 10px 0;
-    text-align: center;
+    margin: 0;
   }
 
   .header ul li a {
@@ -678,13 +678,23 @@ profile-photo .img{
   }
 
   .FirstElement {
-    flex-direction: column;
-    padding-top: 5rem;
+    padding: 2rem 1rem;
+    text-align: center;
   }
 
   .profile-text{
+    padding: 0 1rem;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .btn {
     width: 100%;
-    padding: 30px 0;
+    text-align: center;
   }
 
   .FirstElement .profile-photo {
@@ -720,9 +730,48 @@ profile-photo .img{
     max-width: 100%;
     margin-top: 20px;
   }
-  .project{
-    flex-basis: 100%;
+
+  .timeline-item {
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .timeline-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .timeline-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .project {
+    padding: 20px;
     margin-bottom: 30px;
+  }
+  
+  .project h4 {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+  
+  .project li {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .project .btn-group {
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .project .btn {
+    padding: 8px 15px;
+    font-size: 14px;
   }
 
   .skills {
@@ -732,4 +781,24 @@ profile-photo .img{
     padding: 50px 0;
   }
 
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+  
+  h2 {
+    font-size: 22px;
+  }
+  
+  h3 {
+    font-size: 18px;
+  }
+  
+  h4 {
+    font-size: 16px;
+  }
 }
