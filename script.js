@@ -15,21 +15,20 @@ $(document).ready(function() {
   // Mobile menu toggle (corrected placement)
   $('.menu_icon').click(function(e) {
     e.preventDefault();
-    e.stopPropagation();
-    $('.navbar').toggleClass('show');
+    $('.header ul').toggleClass('show');
+    $('body').toggleClass('no-scroll');
   });
 
   // Close menu when clicking a link
-  $('.navbar a').click(function() {
-    $('.navbar').removeClass('show');
+  $('.header ul li a').click(function() {
+    $('.header ul').removeClass('show');
+    $('body').removeClass('no-scroll');
   });
 
   // Close menu when clicking outside
-  $(document).click(function(e) {
-    if (!$(e.target).closest('.navbar').length && 
-        !$(e.target).closest('.menu_icon').length) {
-      $('.navbar').removeClass('show');
-    }
+  $('.close-btn').click(function() {
+    $('.header ul').removeClass('show');
+    $('body').removeClass('no-scroll');
   });
 });
 
