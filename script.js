@@ -8,7 +8,35 @@ $(document).ready(function() {
     }
     updateActiveSection();
   });
-  
+  // Mobile menu functionality
+$(document).ready(function() {
+
+  // Mobile menu toggle (corrected placement)
+  $('.menu_icon').click(function(e) {
+    e.preventDefault();
+    $('.header ul').toggleClass('show');
+    $('body').toggleClass('no-scroll');
+  });
+
+  // Close menu when clicking a link
+  $('.header ul li a').click(function() {
+    $('.header ul').removeClass('show');
+    $('body').removeClass('no-scroll');
+  });
+
+  // Close menu when clicking outside
+  $('.close-btn').click(function() {
+    $('.header ul').removeClass('show');
+    $('body').removeClass('no-scroll');
+  });
+});
+
+  // Prevent menu close when clicking inside
+  $('.header ul').on('click', function(e) {
+    e.stopPropagation();
+  });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   const menuIcon = document.querySelector('.menu_icon');
   const closeBtn = document.querySelector('.close-btn');
