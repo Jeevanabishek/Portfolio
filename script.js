@@ -52,24 +52,6 @@ $('.close-btn').click(function() {
   $('body').removeClass('no-scroll');
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  const menuIcon = document.querySelector('.menu_icon');
-  const closeBtn = document.querySelector('.close-btn');
-  const navMenu = document.querySelector('.header ul');
-  const body = document.body;
-
-  menuIcon.addEventListener('click', function() {
-    navMenu.classList.add('show');
-    body.classList.add('no-scroll');
-  });
-
-  closeBtn.addEventListener('click', function() {
-    navMenu.classList.remove('show');
-    body.classList.remove('no-scroll');
-  });
-});
-
-
   // Rest of your existing code...
   $(".header ul li a").click(function(e) {
     e.preventDefault();
