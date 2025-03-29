@@ -8,21 +8,28 @@ $(document).ready(function() {
     }
     updateActiveSection();
   });
+
   // Mobile menu functionality
 $(document).ready(function() {
 
-  // Mobile menu toggle (corrected placement)
-  $('.menu_icon').click(function(e) {
-    e.preventDefault();
-    $('.header ul').toggleClass('show');
-    $('body').toggleClass('no-scroll');
-  });
+ // Mobile menu toggle
+ $('.menu_icon').click(function(e) {
+  e.preventDefault();
+  $('.navbar').addClass('show');
+  $('.close-btn').show();
+  $('.menu_icon').hide();
+  $('body').addClass('no-scroll');
+});
 
-  // Close menu when clicking a link
-  $('.header ul li a').click(function() {
-    $('.header ul').removeClass('show');
+ // Close menu when clicking a link
+ $('.navbar li a').click(function() {
+  if ($(window).width() < 768) {
+    $('.navbar').removeClass('show');
+    $('.close-btn').hide();
+    $('.menu_icon').show();
     $('body').removeClass('no-scroll');
-  });
+  }
+});
 
   // Close menu when clicking outside
   $('.close-btn').click(function() {
@@ -35,6 +42,14 @@ $(document).ready(function() {
   $('.header ul').on('click', function(e) {
     e.stopPropagation();
   });
+});
+
+// Close menu when clicking close button
+$('.close-btn').click(function() {
+  $('.navbar').removeClass('show');
+  $('.close-btn').hide();
+  $('.menu_icon').show();
+  $('body').removeClass('no-scroll');
 });
 
 document.addEventListener('DOMContentLoaded', function() {
