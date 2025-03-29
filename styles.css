@@ -668,39 +668,6 @@ body{
     z-index: 1001;
   }
   
-  .navbar {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: #2a2a2a;
-    padding: 20px 0;
-    z-index: 1000;
-  }
-
-  .navbar.show {
-    display: flex;
-    flex-direction: column;
-    animation: fadeInDown 0.3s ease-out;
-  }
-
-  .navbar li {
-    padding: 10px 20px;
-    text-align: center;
-  }
-
-  .navbar li a {
-    color: #fff;
-    display: block;
-    padding: 10px 0;
-    border-bottom: 1px solid #444;
-  }
-
-  .navbar li:last-child a {
-    border-bottom: none;
-  }
-  
   .header ul{
     display: none;
     position: fixed;
