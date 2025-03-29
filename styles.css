@@ -664,7 +664,6 @@ body{
     display: block !important;
     font-size: 24px;
     cursor: pointer;
-    order: 2;
     z-index: 1001;
   }
   
@@ -714,7 +713,7 @@ body{
     right: 0;
     width: 70%;
     height: 100vh;
-    background: #2a2a2a;
+    background: #202020;
     padding: 80px 20px 20px;
     margin: 0;
     z-index: 1000;
@@ -729,14 +728,28 @@ body{
     transform: translateX(0);
   }
 
+  .navbar li {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+.navbar li:last-child {
+    border-bottom: none;
+}
+
+.navbar li a {
+    color: #fff;
+    font-size: 16px;
+}
+
   .close-btn {
-    position: absolute;
+    display: none;
+    position: fixed;
     top: 20px;
     right: 20px;
     font-size: 24px;
     color: #fff;
     cursor: pointer;
-    display: block;
     z-index: 1001;
   }
 
