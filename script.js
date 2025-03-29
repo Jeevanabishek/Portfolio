@@ -10,54 +10,39 @@ $(document).ready(function() {
   });
 
   // Mobile menu functionality
-$(document).ready(function() {
-
- // Mobile menu toggle
- $('.menu_icon').click(function(e) {
-  e.preventDefault();
-  $('.navbar').addClass('show');
-  $('.close-btn').show();
-  $('.menu_icon').hide();
-  $('body').addClass('no-scroll');
-});
-
- // Close menu when clicking a link
- $('.navbar li a').click(function() {
-  if ($(window).width() < 768) {
-    $('.navbar').removeClass('show');
-    $('.close-btn').hide();
-    $('.menu_icon').show();
-    $('body').removeClass('no-scroll');
-  }
-});
-
-  // Close menu when clicking outside
-  $('.close-btn').click(function() {
-    $('.header ul').removeClass('show');
-    $('body').removeClass('no-scroll');
-  });
-});
-
-  // Prevent menu close when clicking inside
-  $('.header ul').on('click', function(e) {
-    e.stopPropagation();
-  });
-});
-
-// Close menu when clicking close button
-$('.close-btn').click(function() {
-  $('.navbar').removeClass('show');
-  $('.close-btn').hide();
-  $('.menu_icon').show();
-  $('body').removeClass('no-scroll');
-});
-
-  // Rest of your existing code...
-  $(".header ul li a").click(function(e) {
+  $('.menu_icon').click(function(e) {
     e.preventDefault();
+    $('.navbar').addClass('show');
+    $('.close-btn').show();
+    $('.menu_icon').hide();
+    $('body').addClass('no-scroll');
+  });
+
+  // Combined click handler for links and close button
+  $('.navbar').on('click', 'li a, .close-btn', function(e) {
+    // Handle close button
+    if ($(this).hasClass('close-btn')) {
+      e.preventDefault();
+      $('.navbar').removeClass('show');
+      $('.close-btn').hide();
+      $('.menu_icon').show();
+      $('body').removeClass('no-scroll');
+      return;
+    }
+    
+    // Handle menu links (only for mobile)
+    if ($(window).width() < 768) {
+      $('.navbar').removeClass('show');
+      $('.close-btn').hide();
+      $('.menu_icon').show();
+      $('body').removeClass('no-scroll');
+    }
+    
+    // Handle smooth scrolling
     var target = $(this).attr("href");
     if ($(target).hasClass("active-section")) return;
     
+    e.preventDefault();
     if (target === "#home") {
       $("html, body").animate({ scrollTop: 0 }, 500);
     } else {
@@ -65,7 +50,7 @@ $('.close-btn').click(function() {
       $("html, body").animate({ scrollTop: offset }, 500);
     }
     
-    $(".header ul li a").removeClass("active");
+    $(".navbar li a").removeClass("active");
     $(this).addClass("active");
   });
 
@@ -94,22 +79,23 @@ $('.close-btn').click(function() {
       .catch(error => console.error('Error!', error.message));
   });
 
-function updateActiveSection() {
-  var scrollPosition = $(window).scrollTop();
-  if (scrollPosition === 0) {
-    $(".header ul li a").removeClass("active");
-    $(".header ul li a[href='#home']").addClass("active");
-    return;
-  }
-  
-  $("section").each(function() {
-    var target = $(this).attr("id");
-    var offset = $(this).offset().top;
-    var height = $(this).outerHeight();
-    
-    if (scrollPosition >= offset - 40 && scrollPosition < offset + height - 40) {
-      $(".header ul li a").removeClass("active");
-      $(".header ul li a[href='#" + target + "']").addClass("active");
+  function updateActiveSection() {
+    var scrollPosition = $(window).scrollTop();
+    if (scrollPosition === 0) {
+      $(".navbar li a").removeClass("active");
+      $(".navbar li a[href='#home']").addClass("active");
+      return;
     }
-  });
-}
+    
+    $("section").each(function() {
+      var target = $(this).attr("id");
+      var offset = $(this).offset().top;
+      var height = $(this).outerHeight();
+      
+      if (scrollPosition >= offset - 40 && scrollPosition < offset + height - 40) {
+        $(".navbar li a").removeClass("active");
+        $(".navbar li a[href='#" + target + "']").addClass("active");
+      }
+    });
+  }
+});
