@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() { 
   // Sticky header
   $(window).scroll(function() {
     if ($(this).scrollTop() > 1) {
