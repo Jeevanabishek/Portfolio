@@ -193,55 +193,64 @@ body{
 }
 
  /*---------------------------About---------------------------*/
-
-.about-area{
-  border: 1.5px solid #e5e5e5;
-  border-radius: 10px;
-  width: 100%;
-  position: relative;
-  padding-top: 40px;
-  background-color: #202020;
-}
-.about{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom:50px;
-}
-.about-content{
-  flex-basis: 60%;
-}
-.about-content h4{
-  color: #fed700;
-  font-size: 40px;
-  line-height: 70px;
-  text-transform: capitalize;
-}
-.about-content ul {
-  color:#fff;
-  text-align: justify;
-}
-
-.about-content ul li {
-  list-style-type: disc;
-  margin-bottom: 10px;
-}
-
-.about-skills{
-  flex-basis: 35%;
-}
-.about-skills ul li{
-  border-bottom: 1px dashed #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 18px;
-}
-.about-skills ul li:last-child{
-  border-bottom: 0;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
+ .about-area {
+    border: 1.5px solid #e5e5e5;
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+    padding-top: 40px;
+    background-color: #202020;
+    margin-bottom: 60px; /* 👈 added spacing after the section */
+  }
+  
+  .about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 70px;
+    
+  }
+  
+  .about-content {
+    flex-basis: 60%;
+    margin-bottom: 70px;
+  }
+  
+  .about-content h4 {
+    color: #fed700;
+    font-size: 40px;
+    line-height: 70px;
+    text-transform: capitalize;
+  }
+  
+  .about-content ul {
+    color: #fff;
+    text-align: justify;
+  }
+  
+  .about-content ul li {
+    list-style-type: disc;
+    margin-bottom: 10px;
+  }
+  
+  .about-skills {
+    flex-basis: 35%;
+  }
+  
+  .about-skills ul li {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-size: 18px;
+  }
+  
+  .about-skills ul li:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  
 
 
 /*---------------------------Button---------------------------*/
@@ -265,87 +274,53 @@ body{
 
 
 /*---------------------------Education & Internship---------------------------*/
-
-.education-content .row{
-  display: flex;
-  border-radius: 5px;
-  height: 400px;
-  margin-bottom: 250px;
+.timeline-box {
+  padding: 20px;
 }
 
-.education-content .title{
-  color: #fed700;
-}
-.education-content .row .education,
-.education-content .row .internship
-{
-  color: #e5e5e5;
-  flex:0 0 50%;
-  max-width: 50%;
-  margin-top: 30px;
-} 
-.education-content  h3.title{
-  font-size:24px;
-  margin-bottom: 30px;
-  font-weight: 700;
-}
-.education-content .row.timeline-box{
-  flex:0 0 100%;
-  max-width: 100%;  
-}
-.education-content .row .timeline{
-  /* background-color:#e5e5e5; */
-  padding: 30px 15px;
-  border: 1.5px solid #e5e5e5;
-  border-radius: 10px;
-  width: 100%;
+.timeline {
   position: relative;
+  padding-left: 30px;
 }
-.education-content .row .timeline-item{
-  position:relative;
-  padding-left: 37px;
-  padding-bottom: 50px; 
-}
-.education-content .row  .internship .timeline-item{
-  position:relative;
-  padding-left: 37px;
-  padding-bottom: 30px; 
-}
-.education-content .row .timeline-item:last-child{
-  padding-bottom: 0;
-}
-.education-content .row .timeline-item::before{
+
+.timeline::before {
   content: "";
-  width: 1px;
   position: absolute;
-  height: 100%;
-  left: 7px;
-  top: 0;
-  background-color: #fed700;  
-}
-.education-content .row .circle-dot{
-  position: absolute;
+  top: 6px; /* 👈 shifts the line down by 5px */
   left: 0;
-  top: 0;
-  height: 15px;
-  width: 15px;
+  width: 2px;
+  height: 100%;
+  background-color: #fed700;
+}
+
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.circle-dot {
+  width: 12px;
+  height: 12px;
+  background: #fed700;
   border-radius: 50%;
-  background-color: #e5e5e5;
+  position: absolute;
+  left: -35px;
+  top: 6px;
 }
-.education-content .row .timeline-title  {
-  font-weight: 700;
+
+.timeline-title {
   font-size: 18px;
-  margin-bottom: 12px;
+  font-weight: 500;
+  margin: 5px 0;
 }
-.education-content .row .internship .timeline-title  {
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-.education-content .row .timeline-text{
-  line-height: 25px;
-  font-size: 16px;
-  text-align: justify;
+
+.timeline-text {
+  font-size: 15px;
+  margin: 5px 0 5px 20px;
+  list-style-type: disc;
+  color: #ddd;
 }
 
 /* -------------------------- Skills Section CSS -------------------------- */
@@ -357,6 +332,7 @@ body{
   background-color: #202020;
   padding: 80px 0;
   transition: all 0.3s ease;
+   margin-bottom: 60px; 
 }
 
 .container {
@@ -471,6 +447,7 @@ body{
   width: 100%;
   position: relative;
   padding: 90px 0;
+   margin-bottom: 60px; 
 }
 .project-title{
   margin-bottom: 60px;
