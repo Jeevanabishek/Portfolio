@@ -112,7 +112,7 @@ $('#resumeBtn').click(function(e) {
   const downloadUrl = driveUrl.replace('/view?usp=sharing', '/export?format=pdf');
   const link = document.createElement('a');
   link.href = downloadUrl;
-  link.download = 'Jeevan_Abishek_Resume.pdf';
+  link.download = 'Jeevan_Abishek_Data_Analyst.pdf';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
