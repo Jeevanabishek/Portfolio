@@ -77,6 +77,8 @@ $(document).ready(function() {
         form.reset();
       })
       .catch(error => console.error('Error!', error.message));
+
+
   });
 
   function updateActiveSection() {
@@ -98,4 +100,21 @@ $(document).ready(function() {
       }
     });
   }
+
+$('#resumeBtn').click(function(e) {
+  e.preventDefault();
+  const driveUrl = $(this).attr('href');
+  
+  // Open in new tab for viewing
+  window.open(driveUrl, '_blank');
+  
+  // Force download (alternative method for Google Drive)
+  const downloadUrl = driveUrl.replace('/view?usp=sharing', '/export?format=pdf');
+  const link = document.createElement('a');
+  link.href = downloadUrl;
+  link.download = 'Jeevan_Abishek_Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
 });
