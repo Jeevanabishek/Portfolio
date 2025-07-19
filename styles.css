@@ -47,18 +47,18 @@ body{
    /*---------------------------Header---------------------------*/
 
 .header-area{
-  padding:25px 0;
-  transition: padding.3s;
-}
-
-.header-area.sticky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-  background-color: #202020;
-  padding: 5px;
+  z-index: 1000;
+  padding: 15px 0;
+  background-color: #3d3b3b;
+  transition: padding 0.3s;
+}
+
+.header-area.sticky {
+  padding: 5px 0;
 }
 
 .header{
@@ -66,31 +66,6 @@ body{
   justify-content: right;
   align-items: center;
 } 
-
-.logo {
-  display: flex;
-  align-items: center;
-  position: relative; 
-  text-transform: uppercase;
-  font-size: 26px;
-  font-weight: 700;
-}
-
-.logo .fa-bolt {
-  color: #fed700;
-  font-size: 19.5px;
-  position: absolute; 
-  top: 60%;
-  left: 100%; 
-  transform: translate(-50%, -50%); 
-  z-index: 1; 
-}
-
-.signature {
-  width: 100px; 
-  height:auto; 
-  margin-right: 10px; 
-}
 
 .header ul li:first-child {
   margin-right: auto; 
@@ -131,7 +106,7 @@ body{
    display:flex;
    justify-content: space-around;
    align-items: center;
-   padding-top: 5rem; 
+   padding-top: 100px; 
 } 
 
 .FirstElement.adjusted-padding {
@@ -628,37 +603,25 @@ body{
 
   .header-area {
     padding: 15px 0;
-    position: relative;
+    position: fixed;
   }
 
   .header {
-    justify-content: space-between;
-    padding: 0 15px;
-    position: relative;
+    justify-content: center;
+    padding: 0;
   }
 
-  .menu_icon {
-    display: block !important;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001;
-  }
-  
   .header ul{
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 70%;
-    height: 100vh;
-    background: #2a2a2a;
-    padding: 80px 20px 20px;
-    margin: 0;
-    z-index: 1000;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    height: auto;
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
   }
 
   .header ul.show {
@@ -667,67 +630,22 @@ body{
   }
 
   .header ul li {
-    margin: 0;
+    margin: 0 5px;
     padding: 0;
   }
 
   .header ul li a {
-    padding: 15px 0;
-    display: block;
-    border-bottom: 1px solid #444;
-    font-size: 16px;
-    text-align: left;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-bottom: none;
+  }
+
+  .menu_icon, .close-btn {
+    display: none !important;
   }
 
   .header ul li:last-child a {
     border-bottom: none;
-  }
-
-  .navbar {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 70%;
-    height: 100vh;
-    background: #202020;
-    padding: 80px 20px 20px;
-    margin: 0;
-    z-index: 1000;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-    transform: translateX(100%);
-    transition: transform 0.3s ease-out;
-  }
-
-  .navbar.show {
-    display: flex;
-    transform: translateX(0);
-  }
-
-  .navbar li {
-    padding: 10px 0;
-    border-bottom: 1px solid #444;
-}
-
-.navbar li:last-child {
-    border-bottom: none;
-}
-
-.navbar li a {
-    color: #fff;
-    font-size: 16px;
-}
-
-  .close-btn {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1001;
   }
 
   .no-scroll {
@@ -744,8 +662,7 @@ body{
   }
 
   .FirstElement {
-    padding: 2rem 1rem;
-    text-align: center;
+    padding-top: 80px;
   }
 
   .profile-text{
