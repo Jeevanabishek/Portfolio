@@ -45,8 +45,8 @@ body{
 }
 
    /*---------------------------Header---------------------------*/
-
-.header-area{
+/* Header container */
+.header-area {
   position: fixed;
   top: 0;
   left: 0;
@@ -57,47 +57,66 @@ body{
   transition: padding 0.3s;
 }
 
+
+/* Shrink on scroll */
 .header-area.sticky {
   padding: 5px 0;
 }
 
-.header{
-  display:flex;
+/* Header layout */
+.header {
+  display: flex;
   justify-content: right;
   align-items: center;
-} 
-
-.header ul li:first-child {
-  margin-right: auto; 
-}  
-
-.header ul{
-  display: flex;
-  align-items: center; 
-  justify-content: right; /* Center the menu items */
-  width: 50%;
 }
-.header ul li{
+
+/* Navbar list */
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 100%; /* Full width to allow spacing */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navbar list items */
+.header ul li {
   margin: 0 10px;
   text-align: right;
 }
-.header ul li a{
+
+/* Navbar links */
+.header ul li a {
   text-transform: capitalize;
   display: block;
   padding: 10px 15px;
+  white-space: nowrap;        /* Prevent line breaks */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
 }
-.header ul li a.active{
+
+/* Active and hover state */
+.header ul li a.active,
+.header ul li a:hover {
   color: #fed700;
-} 
-.header ul li a:hover{
-  color:#fed700;
 }
-.header .menu_icon{
-  color:#fff;
+
+/* Mobile menu icon placeholder */
+.header .menu_icon {
+  color: #fff;
   font-size: 18px;
   cursor: pointer;
   display: none;
 }
+
 
 
 /*---------------------------HomePage--------------------------*/
@@ -540,6 +559,8 @@ body{
   margin-top: -8px;
   display: block;
 }
+
+
 
 /*---------------------------Footer---------------------------*/
 .footer {
