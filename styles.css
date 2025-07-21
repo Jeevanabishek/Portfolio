@@ -667,7 +667,7 @@ body{
   .header ul li a {
    display: block;
    padding: 8px 5px;
-   font-size: 14px; /* Updated font size as requested */
+   font-size: 12px; /* Updated font size as requested */
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
