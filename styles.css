@@ -641,10 +641,9 @@ body{
   .header ul{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 5px;
-    width: 100%;
-    padding: 0 5px;
+    justify-content: space-around; /* Equal spacing */
+    gap: 0; /* Remove gap for better control */
+    padding: 5px 0;
   }
 
   .header ul.show {
@@ -653,24 +652,25 @@ body{
   }
 
   .header ul li {
-    flex: 0 0 calc(25% - 10px); /* 4 items per row */
+    flex: 1; /* Each item takes equal space */
+    min-width: 25%; /* Ensure 4 items per row */
     margin: 0;
-    padding: 0;
+    padding: 3px;
     text-align: center;
   }
 
   /* Second row - 3 items */
   .header ul li:nth-child(n+5) {
-    flex: 0 0 calc(33.33% - 10px); /* 3 items per row */
+    fmin-width: 33.33%; /* Ensure 3 items per row */
   }
 
   .header ul li a {
-    padding: 8px 5px;
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
+   display: block;
+   padding: 8px 5px;
+   font-size: 14px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
   }
 
   .menu_icon, .close-btn {
@@ -695,7 +695,7 @@ body{
   }
 
   .FirstElement {
-   padding-top: 140px;
+   padding-top: 140px; /* Increased padding to account for two rows */
   }
 
   .profile-text{
