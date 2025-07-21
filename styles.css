@@ -661,13 +661,13 @@ body{
 
   /* Second row - 3 items */
   .header ul li:nth-child(n+5) {
-    fmin-width: 33.33%; /* Ensure 3 items per row */
+    min-width: 33.33%; /* Ensure 3 items per row */
   }
 
   .header ul li a {
    display: block;
    padding: 8px 5px;
-   font-size: 14px;
+   font-size: 14px; /* Updated font size as requested */
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;
@@ -695,7 +695,7 @@ body{
   }
 
   .FirstElement {
-   padding-top: 140px; /* Increased padding to account for two rows */
+   padding-top: 150px; /* Increased padding to account for two rows */
   }
 
   .profile-text{
