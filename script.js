@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // Scroll to top on page refresh
   setTimeout(() => { $("html, body").scrollTop(0); }, 10);
 
   // Sticky header
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     if ($(this).scrollTop() > 1) {
       $(".header-area").addClass("sticky");
     } else {
@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
 
   // Mobile menu functionality
-  $('.menu_icon').click(function(e) {
+  $('.menu_icon').click(function (e) {
     e.preventDefault();
     $('.navbar').addClass('show');
     $('.close-btn').show();
@@ -22,7 +22,7 @@ $(document).ready(function() {
   });
 
   // Combined click handler for links and close button
-  $('.navbar').on('click', 'li a, .close-btn', function(e) {
+  $('.navbar').on('click', 'li a, .close-btn', function (e) {
     // Handle close button
     if ($(this).hasClass('close-btn')) {
       e.preventDefault();
@@ -63,13 +63,22 @@ $(document).ready(function() {
   ScrollReveal().reveal(".projects, .contact, .skill", { origin: "bottom" });
   ScrollReveal().reveal(".skills-title", { origin: "top" });
 
-  // Google Sheet contact form submission
+  // Google Sheet contact form submission with current date (DD-MM-YYYY)
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyXSu1rLuouae6opWiDy8flfkpQcMOomKo_IXJ4NW6-vSZzveyMJGirKdK3_OfH8G1r/exec';
   const form = document.forms['submitToGoogleSheet'];
   const msg = document.getElementById("msg");
 
   form.addEventListener('submit', e => {
     e.preventDefault();
+
+    // Format date as DD-MM-YYYY
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    const year = now.getFullYear();
+    const today = `${day}-${month}-${year}`;
+    document.getElementById("currentDate").value = today;
+
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
       .then(response => {
         msg.style.color = "green";
@@ -95,7 +104,7 @@ $(document).ready(function() {
       return;
     }
 
-    $("section[id]").each(function() {
+    $("section[id]").each(function () {
       var target = $(this).attr("id");
       var offset = $(this).offset().top;
       var height = $(this).outerHeight();
