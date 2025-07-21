@@ -695,12 +695,13 @@ body{
 
   .FirstElement {
    padding-top: 120px; /* Increased padding to account for fixed header */
-    flex-direction: column;
-    align-items: center;
+   flex-direction: column;
+   align-items: center;
   }
 
   .profile-text{
-    padding: 0 1rem;
+   padding: 0 20px; /* Added horizontal padding */
+   text-align: center; /* Center align text */
   }
 
   .btn-group {
