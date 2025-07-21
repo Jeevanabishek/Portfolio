@@ -630,6 +630,7 @@ body{
     width: 100%;
     z-index: 1000;
     background-color: #3d3b3b;
+    height: auto; /* Allow height to adjust based on content */
   }
 
   .header {
@@ -641,14 +642,9 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px; /* Reduced gap between items */
+    gap: 5px;
     width: 100%;
-    padding: 0 10px; /* Added some padding on sides */
-    height: auto;
-    position: static;
-    background: transparent;
-    box-shadow: none;
-    transform: none;
+    padding: 0 5px;
   }
 
   .header ul.show {
@@ -657,19 +653,24 @@ body{
   }
 
   .header ul li {
-    width: auto; /* Changed from 45% to auto */
-    margin: 0; /* Removed margin */
+    flex: 0 0 calc(25% - 10px); /* 4 items per row */
+    margin: 0;
     padding: 0;
+    text-align: center;
+  }
+
+  /* Second row - 3 items */
+  .header ul li:nth-child(n+5) {
+    flex: 0 0 calc(33.33% - 10px); /* 3 items per row */
   }
 
   .header ul li a {
+    padding: 8px 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: block;
-    padding: 8px 12px; /* Adjusted padding */
-    font-size: 14px;
-    border-bottom: none;
-    color: white;
-    text-decoration: none;
-    white-space: nowrap; /* Prevent line breaks */
   }
 
   .menu_icon, .close-btn {
@@ -694,9 +695,7 @@ body{
   }
 
   .FirstElement {
-   padding-top: 120px; /* Increased padding to account for fixed header */
-   flex-direction: column;
-   align-items: center;
+   padding-top: 140px;
   }
 
   .profile-text{
