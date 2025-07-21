@@ -625,6 +625,11 @@ body{
   .header-area {
     padding: 15px 0;
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #3d3b3b;
   }
 
   .header {
@@ -636,8 +641,9 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 5px; /* Reduced gap between items */
     width: 100%;
-    padding: 0;
+    padding: 0 10px; /* Added some padding on sides */
     height: auto;
     position: static;
     background: transparent;
@@ -651,14 +657,19 @@ body{
   }
 
   .header ul li {
-    margin: 0 5px;
+    width: auto; /* Changed from 45% to auto */
+    margin: 0; /* Removed margin */
     padding: 0;
   }
 
   .header ul li a {
-    padding: 8px 12px;
+    display: block;
+    padding: 8px 12px; /* Adjusted padding */
     font-size: 14px;
     border-bottom: none;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap; /* Prevent line breaks */
   }
 
   .menu_icon, .close-btn {
@@ -683,7 +694,9 @@ body{
   }
 
   .FirstElement {
-    padding-top: 80px;
+   padding-top: 120px; /* Increased padding to account for fixed header */
+    flex-direction: column;
+    align-items: center;
   }
 
   .profile-text{
