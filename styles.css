@@ -641,9 +641,9 @@ body{
   .header ul{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Equal spacing */
-    gap: 0; /* Remove gap for better control */
+    justify-content: center;
     padding: 5px 0;
+    gap: 4px; /* Smaller gap between items */
   }
 
   .header ul.show {
@@ -652,25 +652,33 @@ body{
   }
 
   .header ul li {
-    flex: 1; /* Each item takes equal space */
-    min-width: 25%; /* Ensure 4 items per row */
+    flex: 0 0 calc(25% - 5px); /* 25% width with gap adjustment */
     margin: 0;
-    padding: 3px;
+    padding: 2px; /* Reduced padding */
     text-align: center;
+    box-sizing: border-box;
   }
 
-  /* Second row - 3 items */
+  /* Second row items */
   .header ul li:nth-child(n+5) {
-    min-width: 33.33%; /* Ensure 3 items per row */
+    flex: 0 0 calc(33.33% - 5px); /* 33.33% width for 3 items */
   }
 
-  .header ul li a {
-   display: block;
-   padding: 8px 5px;
-   font-size: 12px; /* Updated font size as requested */
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
+.header ul li a {
+  display: block;
+    padding: 6px 3px; /* Reduced padding */
+    font-size: 11px; /* Slightly smaller font */
+    white-space: normal; /* Allow text wrapping */
+    overflow: visible; /* Show full text */
+    text-overflow: clip; /* Remove ellipsis */
+    line-height: 1.3; /* Better line spacing */
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    height: 100%; /* Fill container height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .menu_icon, .close-btn {
@@ -695,7 +703,7 @@ body{
   }
 
   .FirstElement {
-   padding-top: 150px; /* Increased padding to account for two rows */
+  padding-top: 160px; /* Reduced slightly since text fits better */
   }
 
   .profile-text{
