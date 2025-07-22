@@ -94,10 +94,30 @@ $(document).ready(function () {
       });
   });
 
-  // Highlight active section on scroll
+  // Enhanced active section detection with mobile support
   function updateActiveSection() {
     var scrollPosition = $(window).scrollTop();
+    var headerHeight = $('.header-area').outerHeight();
+    
+    // Mobile-specific handling (screens < 768px)
+    if ($(window).width() < 768) {
+      $(".navbar li a").removeClass("active");
+      
+      // Highlight based on scroll position
+      $(".navbar li a").each(function() {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.length) {
+          if (refElement.position().top <= scrollPosition + 150 && 
+              refElement.position().top + refElement.height() > scrollPosition) {
+            currLink.addClass("active");
+          }
+        }
+      });
+      return;
+    }
 
+    // Desktop handling
     if (scrollPosition === 0) {
       $(".navbar li a").removeClass("active");
       $(".navbar li a[href='#home']").addClass("active");
