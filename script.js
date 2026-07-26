@@ -1,4 +1,145 @@
+/* ============================================================
+   DATA MODEL
+   Add a project by pushing an object here — no HTML editing needed.
+   ============================================================ */
+const PROJECTS = [
+  {
+    title: "Cafe Sales Analytics",
+    image: "cafe/Executive Summary.png",
+    summary:
+      "Independently built an end-to-end ETL pipeline to analyse cafe sales performance using a 2025 dataset of 10k transactions, delivering financial and operational analytics through a multi-page interactive Power BI dashboard.",
+    tags: ["Excel", "Python (Pandas, NumPy)", "Jupyter Notebook", "MS SQL Server", "Power BI (DAX, Power Query)"],
+    github: "https://github.com/Jeevanabishek/Cafe-Sales-Analytics",
+    dashboards: ["cafe/Executive Summary.png", "cafe/Sales & Product Performance.png", "cafe/Customer & Operational Insights.png"]
+  },
+  {
+    title: "Adidas US Sales Analytics",
+    image: "adidas/Executive Summary.png",
+    summary:
+      "Independently designed and executed an end-to-end analytics project using a raw Adidas US sales dataset (2020-2021) — from data discovery through ETL pipeline development to multi-page Power BI dashboard delivery.",
+    tags: ["Excel", "Python (Pandas, NumPy)", "Jupyter Notebook", "MySQL", "Power BI (DAX, Power Query)"],
+    github: "https://github.com/Jeevanabishek/US-Adidas-Sales-Analytics",
+     dashboards: ["adidas/Executive Summary.png", "adidas/Product & Retailer Performance.png", "adidas/Regional & Geographic Insights.png"]
+  }
+];
+
+function renderProjects() {
+  const grid = document.getElementById("projectsGrid");
+  if (!grid) return;
+
+  grid.innerHTML = PROJECTS.map((p, i) => `
+    <article class="project-card">
+      <div class="project-thumb">
+        <img src="${p.image}" alt="${p.title} dashboard preview" loading="lazy"
+             onerror="this.closest('.project-thumb').innerHTML='<div class=&quot;thumb-fallback&quot;><i class=&quot;fa fa-chart-line&quot; aria-hidden=&quot;true&quot;></i></div>'">
+      </div>
+      <h4>${p.title}</h4>
+      <p>${p.summary}</p>
+      <div class="tag-row">
+        ${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+      </div>
+      <div class="project-links">
+        <a href="${p.github}" target="_blank" rel="noopener">GitHub Repository</a>
+        <button type="button" class="btn-dashboard" onclick="openLightbox(${i})">
+          Dashboard Images
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+/* ============================================================
+   DASHBOARD IMAGE LIGHTBOX
+   ============================================================ */
+let currentProject = null;
+let currentIndex = 0;
+
+function openLightbox(projectIndex) {
+  currentProject = PROJECTS[projectIndex];
+  currentIndex = 0;
+  updateLightboxImage();
+  const box = document.getElementById('lightbox');
+  box.hidden = false;
+  box.classList.toggle('single', currentProject.dashboards.length === 1);
+  document.body.classList.add('no-scroll');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').hidden = true;
+  document.body.classList.remove('no-scroll');
+  currentProject = null;
+}
+
+function changeImage(direction) {
+  if (!currentProject) return;
+  const total = currentProject.dashboards.length;
+  currentIndex = (currentIndex + direction + total) % total;
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  const img = document.getElementById('lightboxImg');
+  img.src = currentProject.dashboards[currentIndex];
+  img.alt = `${currentProject.title} dashboard image ${currentIndex + 1}`;
+  document.getElementById('lightboxCounter').textContent =
+    `${currentIndex + 1} / ${currentProject.dashboards.length}`;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (document.getElementById('lightbox').hidden) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') changeImage(1);
+  if (e.key === 'ArrowLeft') changeImage(-1);
+});
+
+/* ============================================================
+   KPI COUNT-UP (runs once, when the strip scrolls into view)
+   ============================================================ */
+function initKpiCounters() {
+  const cards = document.querySelectorAll(".kpi-number");
+  if (!cards.length) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const animate = (el) => {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || "";
+    const isDecimal = String(target).includes(".");
+
+    if (prefersReducedMotion) {
+      el.textContent = target.toLocaleString() + suffix;
+      return;
+    }
+
+    const duration = 1200;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = target * progress;
+      el.textContent = (isDecimal ? value.toFixed(2) : Math.round(value).toLocaleString()) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animate(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  cards.forEach(c => observer.observe(c));
+}
+
 $(document).ready(function () {
+
+  renderProjects();
+  initKpiCounters();
+
   // Scroll to top on page refresh
   setTimeout(() => { $("html, body").scrollTop(0); }, 10);
 
@@ -12,41 +153,47 @@ $(document).ready(function () {
     updateActiveSection();
   });
 
+  // Typed.js role cycler (falls back to static text if the library fails to load)
+  if (window.Typed) {
+    new Typed("#typedRole", {
+      strings: ["Python & SQL",
+                "Power BI & Excel","Extract, Transform & Load (ETL) & Data Cleaning ",
+                "Exploratory Data Analysis (EDA)",
+                "Dashboard Development",
+                "Data Storytelling"],
+      contentType: 'null',
+      startDelay: 1000,
+      typeSpeed: 30,
+      backSpeed: 25,
+      backDelay: 1400,
+      loop: true,
+      smartBackspace: true
+    });
+  }
+
   // Mobile menu functionality
   $('.menu_icon').click(function (e) {
     e.preventDefault();
-    $('.navbar').addClass('show');
-    $('.close-btn').show();
-    $('.menu_icon').hide();
+    $('#primary-nav').addClass('show');
+    $(this).attr('aria-expanded', 'true');
     $('body').addClass('no-scroll');
   });
 
-  // Combined click handler for links and close button
-  $('.navbar').on('click', 'li a, .close-btn', function (e) {
-    // Handle close button
-    if ($(this).hasClass('close-btn')) {
-      e.preventDefault();
-      $('.navbar').removeClass('show');
-      $('.close-btn').hide();
-      $('.menu_icon').show();
-      $('body').removeClass('no-scroll');
-      return;
-    }
+  $('.close-btn').on('click', function (e) {
+    e.preventDefault();
+    closeMobileNav();
+  });
 
-    // Handle menu links (only for mobile)
+  $('.navbar').on('click', 'li a', function (e) {
     if ($(window).width() < 768) {
-      $('.navbar').removeClass('show');
-      $('.close-btn').hide();
-      $('.menu_icon').show();
-      $('body').removeClass('no-scroll');
+      closeMobileNav();
     }
 
-    // Smooth scrolling
     var target = $(this).attr("href");
     e.preventDefault();
     if (target === "#home") {
       $("html, body").animate({ scrollTop: 0 }, 500);
-    } else {
+    } else if ($(target).length) {
       var offset = $(target).offset().top - 40;
       $("html, body").animate({ scrollTop: offset }, 500);
     }
@@ -55,70 +202,65 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
-  // ScrollReveal animations
-  ScrollReveal({ distance: "100px", duration: 2000, delay: 200 });
-  ScrollReveal().reveal(".header a, .profile-photo, .about-content, .education", { origin: "left" });
-  ScrollReveal().reveal(".header ul, .profile-text, .about-skills, .internship", { origin: "right" });
-  ScrollReveal().reveal(".project-title, .contact-title", { origin: "top" });
-  ScrollReveal().reveal(".projects, .contact, .skill", { origin: "bottom" });
-  ScrollReveal().reveal(".skills-title", { origin: "top" });
+  function closeMobileNav() {
+    $('#primary-nav').removeClass('show');
+    $('.menu_icon').attr('aria-expanded', 'false');
+    $('body').removeClass('no-scroll');
+  }
 
-  // Google Sheet contact form submission with current date (DD-MM-YYYY)
+  // ScrollReveal animations (respects prefers-reduced-motion via CSS override)
+  if (window.ScrollReveal) {
+    ScrollReveal({ distance: "60px", duration: 900, delay: 100, easing: "ease-out" });
+    ScrollReveal().reveal(".hero-text", { origin: "left" });
+    ScrollReveal().reveal(".hero-visual", { origin: "right" });
+    ScrollReveal().reveal(".kpi-card", { origin: "bottom", interval: 80 });
+    ScrollReveal().reveal(".project-card", { origin: "bottom", interval: 100 });
+    ScrollReveal().reveal(".skill", { origin: "bottom", interval: 80 });
+    ScrollReveal().reveal(".experience-area .timeline-item, .education-area .timeline-item", { origin: "bottom", interval: 120 });
+  }
+
+  // Google Sheet contact form submission — endpoint & field names unchanged
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyXSu1rLuouae6opWiDy8flfkpQcMOomKo_IXJ4NW6-vSZzveyMJGirKdK3_OfH8G1r/exec';
   const form = document.forms['submitToGoogleSheet'];
   const msg = document.getElementById("msg");
+  const submitBtn = form.querySelector('.submit');
 
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Format date as DD-MM-YYYY
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
-    const today = `${day}-${month}-${year}`;
-    document.getElementById("currentDate").value = today;
+    document.getElementById("currentDate").value = `${day}-${month}-${year}`;
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-      .then(response => {
-        msg.style.color = "green";
+      .then(() => {
+        msg.style.color = "#5eead4";
         msg.innerHTML = "✅ Message sent successfully!";
-        setTimeout(() => msg.innerHTML = "", 5000);
         form.reset();
       })
       .catch(error => {
         console.error('Error!', error.message);
-        msg.style.color = "red";
+        msg.style.color = "#f66";
         msg.innerHTML = "❌ Failed to send message.";
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
         setTimeout(() => msg.innerHTML = "", 5000);
       });
   });
 
-  // Enhanced active section detection with mobile support
+  // Active section detection
   function updateActiveSection() {
     var scrollPosition = $(window).scrollTop();
-    var headerHeight = $('.header-area').outerHeight();
-    
-    // Mobile-specific handling (screens < 768px)
-    if ($(window).width() < 768) {
-      $(".navbar li a").removeClass("active");
-      
-      // Highlight based on scroll position
-      $(".navbar li a").each(function() {
-        var currLink = $(this);
-        var refElement = $(currLink.attr("href"));
-        if (refElement.length) {
-          if (refElement.position().top <= scrollPosition + 150 && 
-              refElement.position().top + refElement.height() > scrollPosition) {
-            currLink.addClass("active");
-          }
-        }
-      });
-      return;
-    }
 
-    // Desktop handling
-    if (scrollPosition === 0) {
+    if (scrollPosition < 10) {
       $(".navbar li a").removeClass("active");
       $(".navbar li a[href='#home']").addClass("active");
       return;
@@ -136,6 +278,5 @@ $(document).ready(function () {
     });
   }
 
-  // Initial run
   updateActiveSection();
 });
